@@ -1,71 +1,174 @@
 "use client";
 
-import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import {
+  CheckCircle2,
+  Clock3,
+  Loader2,
+  CircleDashed,
+} from "lucide-react";
+
+import { useState, useTransition } from "react";
 import { toast } from "sonner";
+
+import { updateReportStatus } from "@/app/actions/reports/update-report-status";
+import { cn } from "@/lib/utils";
+
+type Status =
+  | "pending"
+  | "process"
+  | "done";
 
 type Props = {
   id: string;
-  currentStatus: "pending" | "process" | "done";
+  currentStatus: Status;
+};
+
+const statusConfig = {
+  pending: {
+    label: "Pending",
+    icon: CircleDashed,
+    color:
+      "bg-yellow-50 text-yellow-700 border-yellow-200",
+  },
+
+  process: {
+    label: "Diproses",
+    icon: Clock3,
+    color:
+      "bg-blue-50 text-blue-700 border-blue-200",
+  },
+
+  done: {
+    label: "Selesai",
+    icon: CheckCircle2,
+    color:
+      "bg-green-50 text-green-700 border-green-200",
+  },
 };
 
 export default function StatusUpdater({
   id,
   currentStatus,
 }: Props) {
-  const [status, setStatus] = useState(currentStatus);
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] =
+    useState<Status>(currentStatus);
 
-  const updateStatus = async (newStatus: string) => {
-    setLoading(true);
+  const [isPending, startTransition] =
+    useTransition();
 
-    console.log("UPDATE ID:", id);
-    console.log("NEW STATUS:", newStatus);
+  const handleChange = (
+    newStatus: Status
+  ) => {
+    const previousStatus = status;
 
-    const { data, error } = await supabase
-      .from("reports")
-      .update({ status: newStatus })
-      .eq("id", id.trim())
-      .select();
+    setStatus(newStatus);
 
-    console.log("UPDATE RESULT:", { data, error });
+    startTransition(async () => {
+      const result =
+        await updateReportStatus(
+          id,
+          newStatus
+        );
 
-    if (error) {
-      toast.error(error.message);
-      setLoading(false);
-      return;
-    }
+      if (!result.success) {
+        setStatus(previousStatus);
 
-    if (!data || data.length === 0) {
-      toast.error("No row updated (CHECK RLS / ID mismatch)");
-      setLoading(false);
-      return;
-    }
+        toast.error(result.message);
 
-    setStatus(newStatus as any);
-    toast.success("Status updated");
+        return;
+      }
 
-    setLoading(false);
+      toast.success(
+        "Status laporan diperbarui"
+      );
+    });
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <select
-        value={status}
-        onChange={(e) => updateStatus(e.target.value)}
-        disabled={loading}
-        className="px-3 py-2 border rounded-lg text-sm bg-white"
+    <div className="flex flex-col gap-4 w-full md:w-auto">
+      
+      {/* CURRENT STATUS */}
+      <div
+        className={cn(
+          "flex items-center gap-3 px-4 py-3 rounded-2xl border transition-all",
+          statusConfig[status].color
+        )}
       >
-        <option value="pending">Pending</option>
-        <option value="process">Process</option>
-        <option value="done">Done</option>
-      </select>
+        <div className="w-10 h-10 rounded-xl bg-white/70 flex items-center justify-center shadow-sm">
+          {(() => {
+            const Icon =
+              statusConfig[status].icon;
 
-      {loading && (
-        <span className="text-xs text-gray-400">
-          Updating...
-        </span>
-      )}
+            return (
+              <Icon className="w-5 h-5" />
+            );
+          })()}
+        </div>
+
+        <div>
+          <p className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
+            Status Saat Ini
+          </p>
+
+          <p className="font-bold text-sm">
+            {
+              statusConfig[status]
+                .label
+            }
+          </p>
+        </div>
+      </div>
+
+      {/* BUTTONS */}
+      <div className="grid grid-cols-3 gap-2">
+        {(
+          Object.keys(
+            statusConfig
+          ) as Status[]
+        ).map((item) => {
+          const config =
+            statusConfig[item];
+
+          const Icon = config.icon;
+
+          const active =
+            status === item;
+
+          return (
+            <button
+              key={item}
+              disabled={isPending}
+              onClick={() =>
+                handleChange(item)
+              }
+              className={cn(
+                "relative overflow-hidden rounded-2xl border px-4 py-3 transition-all duration-200 group",
+                active
+                  ? config.color +
+                      " shadow-md scale-[1.02]"
+                  : "bg-white hover:border-primary/20 hover:bg-surface"
+              )}
+            >
+              <div className="flex flex-col items-center gap-2">
+                {isPending &&
+                active ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <Icon className="w-5 h-5" />
+                )}
+
+                <span className="text-xs font-bold">
+                  {config.label}
+                </span>
+              </div>
+
+              {active && (
+                <div className="absolute inset-x-0 bottom-0 h-1 bg-current opacity-20" />
+              )}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

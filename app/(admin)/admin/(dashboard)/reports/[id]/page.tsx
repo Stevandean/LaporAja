@@ -63,44 +63,36 @@ console.log("USER:", user);
       <div className="bg-white rounded-2xl border shadow-sm p-8 space-y-8">
 
         {/* TOP SECTION */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
 
-          <div>
+          {/* LEFT */}
+          <div className="flex-1">
             <p className="text-xs uppercase tracking-widest text-accent font-bold mb-3">
               #{report.id.substring(0, 8)}
             </p>
 
-            <h2 className="text-2xl font-bold text-primary">
+            <h2 className="text-3xl font-bold text-primary leading-tight">
               {report.title}
             </h2>
 
-            <div className="flex items-center gap-3 mt-3">
+            <div className="flex flex-wrap items-center gap-3 mt-4">
               <StatusBadge status={report.status} />
-              <span className="text-xs text-gray-400">
+
+              <span className="text-xs text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
                 ID: {report.id}
               </span>
             </div>
           </div>
 
-        </div>
-
-        {/* STATUS CONTROL */}
-        <div className="panel p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-l-4 border-primary">
-
-          <div>
-            <p className="text-xs uppercase tracking-widest text-gray-400">
-              Status Laporan
-            </p>
-            <p className="text-sm text-gray-600 mt-1">
-              Ubah status laporan masyarakat
-            </p>
+          {/* RIGHT */}
+          <div className="lg:w-[360px] shrink-0 border-l-4 border-primary pl-6">
+            <StatusUpdater
+              id={report.id}
+              currentStatus={report.status}
+            />
           </div>
-
-          <StatusUpdater
-            id={report.id}
-            currentStatus={report.status}
-          />
         </div>
+
 
         {/* INFO GRID */}
         <div className="grid md:grid-cols-2 gap-6">
