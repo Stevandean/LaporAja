@@ -7,7 +7,7 @@ import ReportModal from "../modal/ReportModal";
 
 const navItems = [
     { name: "Beranda", href: "/" },
-    { name: "Reports", href: "/report" },
+    { name: "Reports", href: "/reports" },
     { name: "Services", href: "/services" },
     { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
