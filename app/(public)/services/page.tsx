@@ -77,7 +77,7 @@ export default function Services() {
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
             {/* Connecting Line (Desktop) */}
-            <div className="hidden md:block absolute top-7 left-12 right-12 h-px bg-border -z-0" />
+            <div className="hidden md:block absolute top-7 left-12 right-12 h-px bg-border z-0" />
             
             {[
               { label: "Isi Laporan", icon: <ClipboardList className="w-5 h-5" /> },
