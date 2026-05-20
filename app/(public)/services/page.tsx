@@ -77,7 +77,7 @@ export default function Services() {
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
             {/* Connecting Line (Desktop) */}
-            <div className="hidden md:block absolute top-7 left-12 right-12 h-[1px] bg-border -z-0" />
+            <div className="hidden md:block absolute top-7 left-12 right-12 h-px bg-border -z-0" />
             
             {[
               { label: "Isi Laporan", icon: <ClipboardList className="w-5 h-5" /> },
@@ -135,7 +135,7 @@ export default function Services() {
           <div className="absolute inset-0 bg-primary/5 flex items-center justify-center">
              <Zap className="w-24 h-24 text-primary/20" />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-primary/20 to-transparent">
+          <div className="absolute bottom-0 left-0 right-0 p-8 bg-linear-to-t from-primary/20 to-transparent">
              <div className="flex items-center gap-4">
                 <div className="px-3 py-1 bg-accent text-white text-[10px] font-bold uppercase rounded">Platform Stats</div>
                 <div className="text-xs font-mono text-accent font-bold uppercase tracking-widest">Efficiency +45%</div>

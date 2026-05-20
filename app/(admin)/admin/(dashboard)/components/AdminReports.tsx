@@ -86,7 +86,6 @@ export default function AdminReports({
   }, [searchInput, filterStatus, pathname, router, searchParams]);
 
   // ================= SOURCE OF TRUTH =================
-  // 🔥 IMPORTANT: filter out soft deleted data
   const [reportsState, setReportsState] = useState(
     reports.filter((r) => !r.deleted_at)
   );

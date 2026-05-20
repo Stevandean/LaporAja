@@ -66,7 +66,7 @@ export default function About() {
         >
           <div className="absolute inset-0 bg-primary/5 rounded-[40px] rotate-3" />
           <div className="absolute inset-0 bg-white border border-border rounded-[40px] -rotate-3 overflow-hidden flex items-center justify-center text-8xl shadow-sm">
-            <Globe className="w-32 h-32 text-primary/10 stroke-[1]" />
+            <Globe className="w-32 h-32 text-primary/10 stroke-1" />
           </div>
         </motion.div>
       </section>

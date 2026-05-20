@@ -27,9 +27,9 @@ const Hero = () => {
                             </div>
                         </header>
 
-                        <div className="hidden lg:flex relative h-[500px] items-center justify-center" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1200">
+                        <div className="hidden lg:flex relative h-125 items-center justify-center" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1200">
                             {/* Back Card */}
-                            <div className="absolute top-10 right-4 w-[85%] aspect-video bg-white rounded-[2rem] border border-slate-200 shadow-2xl p-6 z-0 transform rotate-2">
+                            <div className="absolute top-10 right-4 w-[85%] aspect-video bg-white rounded-4xl border border-slate-200 shadow-2xl p-6 z-0 transform rotate-2">
                                 <div className="flex items-center justify-between mb-4">
                                     <span className="text-[10px] font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-full uppercase tracking-widest border border-red-100">Sebelum</span>
                                     <i data-lucide="alert-triangle" className="w-5 h-5 text-red-500"></i>
@@ -40,7 +40,7 @@ const Hero = () => {
                             </div>
 
                             {/* Front Card */}
-                            <div className="absolute left-0 w-[85%] aspect-video bg-white rounded-[2rem] border border-slate-100 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] p-6 z-10 transform -rotate-4 translate-y-10">
+                            <div className="absolute left-0 w-[85%] aspect-video bg-white rounded-4xl border border-slate-100 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] p-6 z-10 transform -rotate-4 translate-y-10">
                                 <div className="flex items-center justify-between mb-4">
                                     <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full uppercase tracking-widest border border-slate-200">Sesudah</span>
                                     <i data-lucide="check-circle-2" className="w-5 h-5 text-primary"></i>

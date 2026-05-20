@@ -110,7 +110,7 @@ function Skeleton() {
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          className="p-6 rounded-2xl bg-slate-100 animate-pulse h-[180px]"
+          className="p-6 rounded-2xl bg-slate-100 animate-pulse h-45"
         />
       ))}
     </div>

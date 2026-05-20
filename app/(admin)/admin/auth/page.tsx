@@ -129,7 +129,7 @@ export default function AdminAuth() {
             repeat: Infinity,
             ease: 'linear',
           }}
-          className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-accent/10 rounded-full blur-[120px]"
+          className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-accent/10 rounded-full blur-[120px]"
         />
 
         <motion.div
@@ -144,7 +144,7 @@ export default function AdminAuth() {
             repeat: Infinity,
             ease: 'linear',
           }}
-          className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[100px]"
+          className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[100px]"
         />
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-overlay" />
@@ -157,7 +157,7 @@ export default function AdminAuth() {
           duration: 0.6,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="relative z-10 w-full max-w-[480px]"
+        className="relative z-10 w-full max-w-120"
       >
         {/* Logo Section */}
         <div className="flex flex-col items-center mb-12">
@@ -175,7 +175,7 @@ export default function AdminAuth() {
 
         {/* Main Card */}
         <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 via-primary/10 to-accent/20 rounded-[40px] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+          <div className="absolute -inset-1 bg-linear-to-r from-accent/20 via-primary/10 to-accent/20 rounded-[40px] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
 
           <div className="relative bg-white/80 backdrop-blur-2xl border border-white/50 rounded-[38px] p-8 sm:p-12 shadow-2xl overflow-hidden">
             <div className="mb-10 text-center">
